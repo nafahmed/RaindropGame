@@ -14,12 +14,13 @@ b = new Bucket(mouseX, mouseY);
 }
 
 void draw() {
+b.update();
   circle.set(mouseX, mouseY);             //set value of mouse as mouseX,mouseY
  background(0, 200, 255);
   r.fall();         //make the raindrop fall. It should accelerate as if pulled towards the ground by earth's gravity
   r.display();      //display the raindrop
  b.catcher(mouseX, mouseY);
-  if (r.isInContactWith(circle)) {      //check to see if the raindrop is in contact with the point represented by the PVector called mouse
+  if (r.isInContactWith(b)) {      //check to see if the raindrop is in contact with the point represented by the PVector called mouse
     r.reset();                         //if it is, reset the raindrop
   }
   if (r.loc.y > height + r.diam/2) {     //check to see if the raindrop goes below the bottom of the screen

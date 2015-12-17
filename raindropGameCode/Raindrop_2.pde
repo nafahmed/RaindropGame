@@ -12,7 +12,7 @@ class Bucket{
   
   void catcher(float x, float y){
    fill(0);
-   ellipse(x,y,sz,sz);
+   ellipse(loc.x,loc.y,sz,sz);
    noStroke();
   }
   boolean inInContactWith(Bucket b){
@@ -23,7 +23,9 @@ class Bucket{
     return false; 
    }
   }
-  
+  void update(){
+    loc.set(mouseX,mouseY);
+  }
   void reset(){
    loc.x = random(width);
    loc.y = 0;
