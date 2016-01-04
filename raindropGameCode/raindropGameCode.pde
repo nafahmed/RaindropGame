@@ -1,3 +1,10 @@
+
+float mode;
+int score;
+
+
+
+
 PVector circle;   //declare a PVector called mouseRaindrop r;      //declare a new Raindrop called r
 //Raindrop r;
 Bucket b;
@@ -10,6 +17,8 @@ ArrayList<Raindrop> r = new ArrayList<Raindrop>();
 
 void setup() {
   size(1200, 800);
+  mode = 0;
+  score = 0;
  circle = new PVector();                //initialize mouse PVector. value is irrelevant since it will be set at the start of void draw(){}
 // r = new Raindrop(random(width), 0);   //Initialize r. The parameters used are the initial x and y positions
 b = new Bucket(mouseX, mouseY);
@@ -17,7 +26,19 @@ r.add(new Raindrop(mouseX, mouseY));
 }
 
 void draw() {
-  println(r.size());
+  if(mode == 0){
+   background(0);
+   textSize(32);
+   text("Click mouse to play", 600,200);
+   textAlign(CENTER);
+   fill(255);
+   if(mousePressed){
+    mode = 1; 
+   }
+  }
+  
+  if(mode == 1){
+  
   r.add(new Raindrop(mouseX, mouseY));
   
   for(int i = r.size()-1; i>=0; i--){
@@ -34,5 +55,6 @@ b.update();
   if (a.loc.y > height + a.diam/2) {     //check to see if the raindrop goes below the bottom of the screen
     a.reset();                           //if it does, reset the raindrop
   }
+}
 }
 }
