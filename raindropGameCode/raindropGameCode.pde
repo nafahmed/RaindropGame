@@ -1,7 +1,7 @@
 
 float mode;
 int score;
-
+int n;
 
 
 
@@ -19,6 +19,7 @@ void setup() {
   size(1200, 800);
   mode = 0;
   score = 0;
+  n = 0;
  circle = new PVector();                //initialize mouse PVector. value is irrelevant since it will be set at the start of void draw(){}
 // r = new Raindrop(random(width), 0);   //Initialize r. The parameters used are the initial x and y positions
 b = new Bucket(mouseX, mouseY);
@@ -46,15 +47,33 @@ void draw() {
 b.update();
   circle.set(mouseX, mouseY);             //set value of mouse as mouseX,mouseY
  background(0, 200, 255);
+ textSize(32);
+ text(n,600,200);
+ textAlign(CENTER);
   a.fall();         //make the raindrop fall. It should accelerate as if pulled towards the ground by earth's gravity
   a.display();      //display the raindrop
  b.catcher(mouseX, mouseY);
   if (a.isInContactWith(b)) {      //check to see if the raindrop is in contact with the point represented by the PVector called mouse
     a.reset();                         //if it is, reset the raindrop
   }
-  if (a.loc.y > height + a.diam/2) {     //check to see if the raindrop goes below the bottom of the screen
-    a.reset();                           //if it does, reset the raindrop
-  }
+  if (a.loc.y > height ) {     //check to see if the raindrop goes below the bottom of the screen
+    n = n+1;
+    a.reset();       //if it does, reset the raindrop
+  
+}
+if(n == 5){
+ mode = 2; 
+}
+if (mode == 2){
+ background(0);
+ textSize(32);
+ text("You lose. Click mouse to play again", 600, 200);
+ textAlign(CENTER);
+ fill(255);
+ if(mousePressed){
+  mode = 1; 
+ }
+}
 }
 }
 }
