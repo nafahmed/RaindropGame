@@ -21,12 +21,12 @@ class Raindrop {
   }
 
   void fall() {
-    vel.add(a);
+    vel.mult(1.1);
     loc.add(vel);
   }
 
-  boolean isInContactWith(Bucket thing) {
-    if (loc.dist(thing.loc)<diam/2+thing.sz/2) {
+  boolean isInContactWith(Bucket b) {
+    if (loc.dist(b.loc)<diam/2+b.sz/2) {
       return true;
     } else {
       return false;
